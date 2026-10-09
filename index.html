@@ -25,24 +25,31 @@
   li { margin: 4px 0; }
   .muted { color: var(--dim); }
   a { color: var(--accent); }
+  .table-wrap { overflow-x: auto; margin: 8px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--dim); font-weight: 600; }
 </style>
 </head>
 <body>
 <main>
 <div class="card">
   <h1>Personvernerklæring – Tunnel – overvåking</h1>
-  <p class="meta">Sist oppdatert: 7. oktober 2026</p>
+  <p class="meta">Sist oppdatert: 9. oktober 2026</p>
 
   <p>
     Tunnel – overvåking er en Android-app for autoriserte operatører som følger med på sensorer i et
-    tunnelanlegg – gass, støv og passeringer. Appen viser varsler, trender og anleggets egen logg, og
-    gir beslutningsstøtte. Denne erklæringen forklarer hvilke opplysninger appen behandler, hvorfor,
-    og hvilke valg du har.
+    tunnelanlegg – gass, støv, trafikk og klima. Appen viser varsler, trender og anleggets egen logg, og
+    gir beslutningsstøtte. Denne erklæringen forklarer hvilke opplysninger appen behandler, hvorfor, på
+    hvilket grunnlag, hvor lenge, og hvilke rettigheter du har.
   </p>
 
-  <h2>Hvem er ansvarlig</h2>
+  <h2>Behandlingsansvarlig</h2>
   <p>
-    Appen publiseres av Fjord Studio. Spørsmål om personvern, innsyn eller sletting sendes til
+    Appen publiseres av Fjord Studio. Behandlingsansvarlig for opplysningene som behandles gjennom
+    appen og serveren den henter data fra, er Langsæter Labs (enkeltpersonforetak, org.nr.
+    937 939 493, Trondheim), som står bak Fjord Studio. Spørsmål om personvern, og krav om innsyn,
+    retting eller sletting, sendes til
     <a href="mailto:fjordstudio.app@gmail.com">fjordstudio.app@gmail.com</a>.
   </p>
 
@@ -50,8 +57,7 @@
   <ul>
     <li>
       <strong>Innlogging.</strong> Brukernavn og passord sendes kryptert til serveren når du logger inn.
-      Passordet lagres ikke på enheten. Etter innlogging lagres en innloggingsøkt på enheten, til du
-      logger ut eller økten utløper.
+      Passordet lagres ikke på enheten. Etter innlogging lagres en innloggingsøkt på enheten.
     </li>
     <li>
       <strong>Det du skriver.</strong> Begrunnelser når du demper et varsel, notater når du løser et
@@ -63,10 +69,52 @@
       hendelsesloggen, slik at oppfølgingen kan dokumenteres.
     </li>
     <li>
+      <strong>Tekniske logger.</strong> Serververten logger hver forespørsel for drift og sikkerhet:
+      tidspunkt, hvilken adresse i tjenesten som ble kalt, svarkode og IP-adresse. Serveren selv logger
+      hendelser som mislykkede innlogginger (uten brukernavn), handlinger på varsler, at et dokument
+      ble lastet opp (uten navn eller innhold) og tekniske feil. Loggene inneholder aldri passord eller innholdet i
+      spørsmål og rapporter. For å stoppe passordgjetting holder serveren dessuten på IP-adressen i
+      inntil 15 minutter etter et mislykket innloggingsforsøk.
+    </li>
+    <li>
       <strong>Innstillinger på enheten.</strong> Valg av tema (lyst, mørkt eller system) lagres bare
       på enheten.
     </li>
   </ul>
+
+  <h2>Formål og rettslig grunnlag</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Formål</th><th>Opplysninger</th><th>Rettslig grunnlag (GDPR art. 6)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gi tilgang og holde tjenesten sikker</td>
+          <td>Brukernavn, innloggingsøkt, tekniske logger</td>
+          <td>Berettiget interesse (f) i å sikre at bare autoriserte operatører får tilgang</td>
+        </tr>
+        <tr>
+          <td>Følge opp og dokumentere varsler</td>
+          <td>Begrunnelser, notater, rapporter, handlinger i hendelsesloggen</td>
+          <td>Berettiget interesse (f) i forsvarlig oppfølging av sikkerheten i tunnelen</td>
+        </tr>
+        <tr>
+          <td>Svare på spørsmål til AI-assistenten</td>
+          <td>Spørsmålet og samtalen (se under)</td>
+          <td>Berettiget interesse (f) i beslutningsstøtte som operatøren selv ber om</td>
+        </tr>
+        <tr>
+          <td>Rette feil i AI-svar</td>
+          <td>Rapportert svar og eventuell begrunnelse</td>
+          <td>Berettiget interesse (f) i å finne og rette feil og upassende svar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">
+    Du kan protestere mot behandling som bygger på berettiget interesse; se «Dine rettigheter».
+  </p>
 
   <h2>Opplysninger appen ikke samler inn</h2>
   <p>
@@ -76,59 +124,105 @@
 
   <h2>AI-assistenten</h2>
   <p>
-    Når du stiller AI-assistenten et spørsmål, sender serveren spørsmålet og relevant sensordata til
-    OpenAI for å lage svaret. OpenAI behandler dataene som vår tjenesteleverandør, bruker ikke data
-    fra tjenesten til å trene modeller, og kan oppbevare forespørsler i en begrenset periode for å
-    avdekke misbruk. Ikke skriv personopplysninger i spørsmålene.
+    Når du stiller AI-assistenten et spørsmål, sender serveren dette til OpenAI for å lage svaret:
+    spørsmålet, de siste meldingene i samtalen, anleggets status, gjeldende sensorverdier og grenser,
+    aktive varsler og trender, de lærte mønstrene, og utdrag fra dokumenter som er lastet opp i
+    konsollen. For at dokumentene skal kunne søkes i, sendes de også i sin helhet til OpenAI når de
+    lastes opp. OpenAI behandler dataene som vår databehandler. Data som sendes gjennom OpenAIs API
+    brukes ikke til å trene modeller, og OpenAI kan oppbevare forespørsler i inntil 30 dager for å
+    avdekke misbruk. Ikke skriv personopplysninger i spørsmålene eller i dokumenter du laster opp.
+  </p>
+  <p>
+    AI-assistenten gir bare råd. Den tar ingen beslutninger og gjør ingen handlinger på egen hånd;
+    det er alltid en operatør som bestemmer. Det skjer ingen automatiserte avgjørelser om deg.
   </p>
   <p>
     Du kan rapportere et svar fra AI-assistenten du mener er feil eller upassende. Da sendes svaret
-    og en eventuell begrunnelse til serveren og oppbevares for gjennomgang, slik at vi kan rette
-    feilen.
+    og en eventuell begrunnelse til serveren og oppbevares for gjennomgang, slik at vi kan rette feilen.
+    Rapporterte svar kan ses av andre innloggede operatører.
   </p>
 
-  <h2>Deling</h2>
+  <h2>Databehandlere og overføring ut av EØS</h2>
+  <ul>
+    <li>
+      <strong>Render Services, Inc.</strong> drifter serveren. Dataene lagres i Render sitt datasenter
+      i Frankfurt (EU). Render er et amerikansk selskap.
+    </li>
+    <li>
+      <strong>OpenAI</strong> lager svarene fra AI-assistenten. Forespørslene behandles i USA.
+    </li>
+  </ul>
   <p>
-    Vi selger ikke opplysninger og deler dem ikke med andre, utover tjenesteleverandører som drifter
-    løsningen på våre vegne (serververt, og OpenAI for AI-assistenten).
+    Behandlingen hos begge reguleres av leverandørenes databehandleravtaler. Overføring til USA bygger
+    på EU–US Data Privacy Framework der leverandøren er sertifisert, og ellers på EUs standardavtaler
+    (Standard Contractual Clauses) i databehandleravtalen. Du kan få en kopi av grunnlaget ved å
+    kontakte oss. Vi selger ikke opplysninger og deler dem ikke med andre enn disse databehandlerne.
   </p>
 
   <h2>Sikkerhet</h2>
   <p>
-    All trafikk mellom appen og serveren er kryptert (HTTPS), og all bruk krever innlogging.
+    All trafikk mellom appen og serveren er kryptert (HTTPS), og all bruk krever innlogging. Gjentatte
+    mislykkede innloggingsforsøk sperres midlertidig, og en innloggingsøkt utløper automatisk.
   </p>
 
-  <h2 id="sletting">Slik ber du om sletting av data</h2>
-  <p>
-    Send en e-post til <a href="mailto:fjordstudio.app@gmail.com">fjordstudio.app@gmail.com</a> med
-    emnet «Sletting – Tunnel – overvåking», og oppgi brukernavnet du logger inn med. Vi sletter
-    opplysningene knyttet til deg innen 30 dager og bekrefter på e-post. Du kan på samme måte be om
-    innsyn i hvilke opplysninger vi har. Du oppretter ikke konto i appen; tilgang gis av den som
-    drifter løsningen.
-  </p>
-
-  <h2>Hva som slettes, og hvor lenge data lagres</h2>
+  <h2 id="lagring">Hvor lenge opplysningene lagres</h2>
   <ul>
     <li>
-      <strong>Innloggingsøkten</strong> på enheten slettes når du logger ut, og slutter å gjelde på
-      serveren etter 8 timer.
+      <strong>Innloggingsøkten</strong> utløper etter 8 timer. Når du logger ut, slettes den på enheten
+      med en gang, og den slutter å gjelde på serveren så snart appen får kontakt med den. Alle økter
+      slutter også å gjelde når serveren startes på nytt.
     </li>
     <li>
       <strong>Samtaler med AI-assistenten</strong> lagres ikke på serveren. Samtalen ligger bare i appen
-      til du lukker den. OpenAI kan oppbevare forespørsler i en begrenset periode (normalt inntil
-      30 dager) for å avdekke misbruk.
+      til du lukker den eller logger ut. OpenAI kan oppbevare forespørsler i inntil 30 dager for å
+      avdekke misbruk.
     </li>
     <li>
-      <strong>Notater, begrunnelser, rapporter og hendelseslogg</strong> lagres i testversjonen bare i
-      serverens minne, og slettes når serveren startes på nytt. Når varig lagring tas i bruk,
-      oppbevares de så lenge de trengs for å dokumentere oppfølgingen av varsler, og denne erklæringen
-      oppdateres med konkrete lagringstider.
+      <strong>Rapporterte AI-svar</strong> lagres i serverens minne (de siste 200) og slettes når
+      serveren startes på nytt. Loggen registrerer bare at en rapport kom inn, ikke innholdet.
     </li>
     <li>
-      <strong>Ved en sletteforespørsel</strong> slettes notater, begrunnelser og rapporter du har
-      skrevet, sammen med andre opplysninger som kan knyttes til brukernavnet ditt.
+      <strong>Notater, begrunnelser, rapporter, hendelseslogg og opplastede dokumenter</strong> lagres i
+      testversjonen bare i serverens minne, med et tak på antall (de nyeste beholdes), og slettes når
+      serveren startes på nytt – i praksis ved hver ny versjon. Når varig lagring tas i bruk,
+      oppdateres denne erklæringen med konkrete lagringstider.
+    </li>
+    <li>
+      <strong>Tekniske logger</strong> hos serververten slettes automatisk etter 7 dager.
     </li>
   </ul>
+
+  <h2 id="rettigheter">Dine rettigheter</h2>
+  <p>
+    Du har rett til innsyn i opplysningene om deg, til å få feil rettet, til å få opplysninger slettet,
+    til å kreve begrenset behandling, til å protestere mot behandling som bygger på berettiget
+    interesse, og til dataportabilitet. Du kan også klage til Datatilsynet
+    (<a href="https://www.datatilsynet.no">datatilsynet.no</a>) hvis du mener vi behandler
+    opplysninger i strid med regelverket.
+  </p>
+
+  <h2 id="sletting">Slik ber du om innsyn eller sletting</h2>
+  <p>
+    Send en e-post til <a href="mailto:fjordstudio.app@gmail.com">fjordstudio.app@gmail.com</a> med
+    emnet «Sletting – Tunnel – overvåking» (eller «Innsyn – Tunnel – overvåking»). Vi svarer innen
+    30 dager og bekrefter på e-post. Du oppretter ikke konto i appen; tilgang gis av den som drifter
+    løsningen.
+  </p>
+  <p>
+    I testversjonen logger operatørene inn med en felles konto, så notater, begrunnelser og rapporter
+    er ikke knyttet til enkeltpersoner. En sletteforespørsel gjennomføres derfor ved at serverens minne
+    tømmes, slik at alle slike opplysninger slettes. Det som da gjenstår, slettes automatisk:
+    serververtens logger etter 7 dager og OpenAIs misbrukskopi etter inntil 30 dager. Innloggingen og
+    samtalen på enheten slettes når du logger ut, og alt på enheten slettes når du avinstallerer appen. Når appen får egne brukere per person, kan vi
+    slette det som gjelder deg alene.
+  </p>
+
+  <h2>Må du gi opplysningene?</h2>
+  <p>
+    For å bruke appen må du logge inn med brukernavn og passord. Alt annet – notater, begrunnelser,
+    rapporter og spørsmål til AI-assistenten – er frivillig og sendes bare når du selv bruker
+    funksjonen.
+  </p>
 
   <h2>Barn</h2>
   <p>Appen er ikke beregnet for personer under 18 år.</p>
